@@ -5,7 +5,7 @@ jdk:
 
 script:
   - ./gradlew installDist
-  - ./eclipse-jvm/build/install/eclipse-jvm/bin/eclipse-jvm
+  - ./build/install/eclipse-board-game/bin/eclipse-board-game
 
 branches:
   only:
