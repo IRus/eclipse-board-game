@@ -1,6 +1,12 @@
+# Gradle
 build
+.gradle
+
+# Intellij Idea
 out
 .idea
 .imp
 .ipr
-.gradle
+
+# Project
+public

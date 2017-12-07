@@ -1,0 +1,31 @@
+language: java
+
+jdk:
+- oraclejdk8
+
+script:
+  - ./gradlew installDist
+  - ./eclipse-jvm/build/install/eclipse-jvm/bin/eclipse-jvm
+
+branches:
+  only:
+    - master
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
+  local_dir: public
+  target_branch: gh-pages
+
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+- rm -rf $HOME/.gradle/caches/*/fileHashes/
+
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
