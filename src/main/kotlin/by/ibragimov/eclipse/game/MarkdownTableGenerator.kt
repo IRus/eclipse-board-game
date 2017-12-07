@@ -14,27 +14,24 @@ interface MarkdownTableGenerator {
 
 class DefaultMarkdownTableGenerator : MarkdownTableGenerator {
     override fun generate(table: Table): String {
-        validate(table)
-
         val header = table.rows.filterIsInstance<Header>().firstOrNull()
         val rows = table.rows.filterIsInstance<Row>()
 
         val sb = StringBuilder().also { builder ->
             header?.let { row ->
-                builder.append(row.columns.joinToString(separator = " | ", prefix = "| ", postfix = " |")).append("\n")
-                builder.append(row.columns.map { "---" }.joinToString(separator = " | ", prefix = "| ", postfix = " |")).append("\n")
+                builder.append(row.columns.toRow())
+                builder.append(row.columns.map { "---" }.toRow())
             }
 
             rows.forEach { row ->
-                builder.append(row.columns.joinToString(separator = " | ", prefix = "| ", postfix = " |")).append("\n")
+                builder.append(row.columns.toRow())
             }
-
         }
 
         return sb.toString()
     }
 
-    private fun validate(table: Table) {
-        println(table)
+    private fun List<String>.toRow(): String {
+        return this.joinToString(separator = " | ", prefix = "| ", postfix = " | \n")
     }
 }
