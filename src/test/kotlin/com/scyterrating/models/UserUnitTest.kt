@@ -1,5 +1,6 @@
 package com.scyterrating.models
 
+import com.scyterrating.helpers.User
 import ma.com.BaseUnitTest
 import org.junit.Assert
 import org.junit.Test

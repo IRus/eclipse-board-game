@@ -1,10 +1,12 @@
 package com.scyterrating.models
 
+import com.scyterrating.helpers.GameResult
+import com.scyterrating.helpers.User
 import ma.com.BaseUnitTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class GameResultUnitTest() : BaseUnitTest() {
+class GameResultUnitTest : BaseUnitTest() {
 
     @Test
     @Throws(Exception::class)

@@ -56,7 +56,7 @@ class DefaultGamesRenderer(
 
     private fun Map.Entry<Player, List<Pair<Game, Result>>>.toRow(): Row {
         val pre = listOf(this.key.name)
-        val after = this.value.sumBy { it.second.score.value }.toString() // TODO value->rating!!!
+        val after = this.value.sumBy { it.second.score.rating }.toString()
 
         return Row(pre + this.value.sortedBy { it.first.date }.map { "${it.second.score.value}/${it.second.score.rating}" } + after)
     }

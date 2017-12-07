@@ -1,12 +1,9 @@
 package com.scyterrating.helpers
 
-import com.scyterrating.models.GameResult
-import com.scyterrating.models.User
-
 
 class PrinterHelper {
     companion object {
-        fun printGameResults(game: MutableList<GameResult>) {
+        fun printGameResults(game: List<GameResult>) {
             print( "Results: ")
             for (gameResult in game) {
                 print(gameResult.user.name + " " + gameResult.result + "; ")
