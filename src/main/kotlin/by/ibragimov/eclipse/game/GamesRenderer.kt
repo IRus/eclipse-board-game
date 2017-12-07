@@ -33,18 +33,22 @@ class DefaultGamesRenderer(
     }
 
     private fun games(games: List<Game>): String {
+        val header = Header(listOf("Players") + games.map { it.date.format(dayFormatter) } + listOf("Total"))
+
+        val rows = listOf(header) + games
+            .flatMap { game -> game.results.map { result -> game to result } }
+            .groupBy { it.second.player }
+            .map { it.toRow() }
+
         return markdownTableGenerator.generate(Table(
-            rows = listOf(
-                Header(columns = listOf(
-                    "Hello",
-                    "World"
-                )),
-                Row(columns = listOf(
-                    "Foo",
-                    "Bar"
-                ))
-            )
+            rows = rows
         ))
     }
-}
 
+    private fun Map.Entry<Player, List<Pair<Game, Result>>>.toRow(): Row {
+        val pre = listOf(this.key.name)
+        val after = this.value.sumBy { it.second.score.value }.toString() // TODO value->rating!!!
+
+        return Row(pre + this.value.map { "${it.second.score.value}/${it.second.score.rating}" } + after)
+    }
+}

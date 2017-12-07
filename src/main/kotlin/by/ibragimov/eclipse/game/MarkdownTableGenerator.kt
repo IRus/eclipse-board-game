@@ -22,7 +22,7 @@ class DefaultMarkdownTableGenerator : MarkdownTableGenerator {
         val sb = StringBuilder().also { builder ->
             header?.let { row ->
                 builder.append(row.columns.joinToString(separator = " | ", prefix = "| ", postfix = " |")).append("\n")
-                builder.append(row.columns.map { " " }.joinToString(separator = " | ", prefix = "| ", postfix = " |")).append("\n")
+                builder.append(row.columns.map { "---" }.joinToString(separator = " | ", prefix = "| ", postfix = " |")).append("\n")
             }
 
             rows.forEach { row ->
