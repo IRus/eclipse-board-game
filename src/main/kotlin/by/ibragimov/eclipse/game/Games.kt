@@ -5,10 +5,7 @@ import java.time.LocalDate
 data class Game(
     val date: LocalDate,
     val results: List<Result>
-) {
-    val playersNumber: Int
-        get() = results.size
-}
+)
 
 data class Result(
     val player: Player,
