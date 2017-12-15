@@ -17,12 +17,15 @@ class DefaultGamesRenderer(
     }
 
     private fun template(body: String): String {
+        val gh = "[GitHub](https://github.com/IRus/eclipse-board-game)"
+        val ical = "[Calendar](https://irus.github.io/eclipse-board-game/calendar.ics)"
+
         return """
             *# Results
             *
             *$body
             *
-            *[GitHub](https://github.com/IRus/eclipse-board-game)
+            * $gh | $ical
         """.trimMargin("*")
     }
 
