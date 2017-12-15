@@ -3,7 +3,12 @@ language: java
 jdk:
 - oraclejdk8
 
+before_install:
+  - export YML_CAL_VERSION=0.0.5
+  - wget "https://dl.bintray.com/heapy/heap/by/heap/calendar/yml/yml-ical/${YML_CAL_VERSION}/yml-ical-${YML_CAL_VERSION}-all.jar"
+
 script:
+  - java -jar "yml-ical-${YML_CAL_VERSION}-all.jar" "./events" "./public/calendar.ics"
   - ./gradlew installDist
   - ./build/install/eclipse-board-game/bin/eclipse-board-game
 
