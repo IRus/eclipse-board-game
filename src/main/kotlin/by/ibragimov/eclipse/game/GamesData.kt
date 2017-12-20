@@ -19,56 +19,56 @@ private val Vlad = Player("Vlad")
 val games = listOf(
     Game(
         date = LocalDate.of(2017, DECEMBER, 20),
-        results = listOf(
-            Result(Ruslan, Score(42)),
-            Result(Ilya, Score(15)),
-            Result(Hleb, Score(24)),
-            Result(Andrey, Score(72))
+        playerResults = listOf(
+            PlayerResult(Ruslan, 42),
+            PlayerResult(Ilya, 15),
+            PlayerResult(Hleb, 24),
+            PlayerResult(Andrey, 72)
         )
     ),
     Game(
         date = LocalDate.of(2017, NOVEMBER, 23),
-        results = listOf(
-            Result(Ruslan, Score(17)),
-            Result(Artur, Score(32)),
-            Result(Hleb, Score(45)),
-            Result(Andrey, Score(51))
+        playerResults = listOf(
+            PlayerResult(Ruslan, 17),
+            PlayerResult(Artur, 32),
+            PlayerResult(Hleb, 45),
+            PlayerResult(Andrey, 51)
         )
     ),
     Game(
         date = LocalDate.of(2017, SEPTEMBER, 19),
-        results = listOf(
-            Result(Ilya, Score(35)),
-            Result(Bronislav, Score(55)),
-            Result(Ruslan, Score(-1)),
-            Result(Andrey, Score(59))
+        playerResults = listOf(
+            PlayerResult(Ilya, 35),
+            PlayerResult(Bronislav, 55),
+            PlayerResult(Ruslan, -1),
+            PlayerResult(Andrey, 59)
         )
     ),
     Game(
         date = LocalDate.of(2017, JULY, 4),
-        results = listOf(
-            Result(Anna, Score(28)),
-            Result(Andrey, Score(50)),
-            Result(Ruslan, Score(46)),
-            Result(Ilya, Score(29))
+        playerResults = listOf(
+            PlayerResult(Anna, 28),
+            PlayerResult(Andrey, 50),
+            PlayerResult(Ruslan, 46),
+            PlayerResult(Ilya, 29)
         )
     ),
     Game(
         date = LocalDate.of(2017, JUNE, 23),
-        results = listOf(
-            Result(Ruslan, Score(41)),
-            Result(Artur, Score(54)),
-            Result(Hleb, Score(68))
+        playerResults = listOf(
+            PlayerResult(Ruslan, 41),
+            PlayerResult(Artur, 54),
+            PlayerResult(Hleb, 68)
         )
     ),
     Game(
         date = LocalDate.of(2017, JUNE, 15),
-        results = listOf(
-            Result(Ruslan, Score(29)),
-            Result(Vlad, Score(32)),
-            Result(Artur, Score(19)),
-            Result(Hleb, Score(40)),
-            Result(Andrey, Score(39))
+        playerResults = listOf(
+            PlayerResult(Ruslan, 29),
+            PlayerResult(Vlad, 32),
+            PlayerResult(Artur, 19),
+            PlayerResult(Hleb, 40),
+            PlayerResult(Andrey, 39)
         )
     )
 )

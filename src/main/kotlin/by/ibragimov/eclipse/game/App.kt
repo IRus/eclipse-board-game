@@ -1,5 +1,6 @@
 package by.ibragimov.eclipse.game
 
+import by.ibragimov.eclipse.game.ratings.SimpleRatingCalculator
 import org.slf4j.LoggerFactory
 
 object App {
@@ -11,7 +12,7 @@ object App {
         try {
             Calculator(
                 DefaultFileWriter(),
-                DefaultRatingCalculator(),
+                SimpleRatingCalculator(),
                 DefaultGamesRenderer(DefaultMarkdownTableGenerator())
             ).run(games)
         } catch (e: Exception) {
@@ -27,10 +28,13 @@ class Calculator(
     private val gamesRenderer: GamesRenderer
 ) {
     fun run(games: List<Game>) {
-        games.map(ratingCalculator::calculate).also { ratings ->
-            gamesRenderer.render(ratings).also { index ->
-                fileWriter.write("public", "index.md", index)
+        games
+            .groupBy { it.date.year }
+            .map { Season(it.key, SeasonGames(it.value), ratingCalculator.calculate(SeasonGames(it.value))) }
+            .also { seasons ->
+                gamesRenderer.render(seasons).also { index ->
+                    fileWriter.write("public", "index.md", index)
+                }
             }
-        }
     }
 }

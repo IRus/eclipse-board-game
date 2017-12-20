@@ -6,7 +6,7 @@ import ma.com.BaseUnitTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class GameResultUnitTest : BaseUnitTest() {
+class GamePlayerResultUnitTest : BaseUnitTest() {
 
     @Test
     @Throws(Exception::class)
