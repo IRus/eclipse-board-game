@@ -1,15 +1,21 @@
-package com.scyterrating.helpers
+package com.ma.scyterrating
 
-class ScyterRatingCalculator {
+import by.ibragimov.eclipse.game.Game
+import by.ibragimov.eclipse.game.Player
+import by.ibragimov.eclipse.game.PlayerResult
+import by.ibragimov.eclipse.game.SeasonGames
+import com.scyterrating.helpers.PrinterHelper
+
+class ScyterRatingHelper {
 
     var gameNumber = 1
 
-    fun isValid(game: List<GameResult>): Boolean {
-        for (i in 0..game.size - 1) {
+    fun isValid(game: List<PlayerResult>): Boolean {
+        for (i in 0 until game.size) {
             val gameResult = game.get(i)
-            for (j in i + 1..game.size - 1) {
+            for (j in i + 1 until game.size) {
                 val nextGameResult = game.get(j)
-                if (gameResult.user.name == nextGameResult.user.name) {
+                if (gameResult.player.name == nextGameResult.player.name) {
                     return false;
                 }
             }
@@ -20,10 +26,10 @@ class ScyterRatingCalculator {
     /**
      * Return Average points, earned by player (ПО в формуле)
      */
-    fun getAverage(game: List<GameResult>): Double {
+    fun getAverage(game: List<PlayerResult>): Double {
         var sum = 0.0;
         for (i in 0..game.size - 1) {
-            sum += game.get(i).result
+            sum += game.get(i).score
         }
         return sum / game.size
     }
@@ -45,14 +51,14 @@ class ScyterRatingCalculator {
     /**
      * Return other players average rating (Рср в формуле)
      */
-    fun otherPlayerAverageRating(user: User, game: List<GameResult>): Double {
+    fun otherPlayerAverageRating(player: Player, game: List<PlayerResult>): Double {
         var sum = 0.0
         var exists = false
         for (gameResult in game) {
-            if (user == gameResult.user) {
+            if (player == gameResult.player) {
                 exists = true;
             } else {
-                sum += gameResult.user.rating
+                sum += gameResult.player.rating
             }
         }
         return if (exists) sum / (game.size - 1) else 0.0
@@ -62,21 +68,17 @@ class ScyterRatingCalculator {
      * Return expected player's points rate in specific game (EarnedPoints / AveragePoints)
      * (вычетаемая дробь в скобках в формуле)
      */
-    fun expectedPointsRate(user: User, game: List<GameResult>): Double {
-        return 2 / expectedRateDenominator(user, game)
+    fun expectedPointsRate(player: Player, game: List<PlayerResult>): Double {
+        return 2 / expectedRateDenominator(player, game)
     }
 
     /**
      * Return expected player's points rate in specific game (EarnedPoints / AveragePoints)
      * (вычетаемая дробь в скобках в формуле)
      */
-    fun expectedPlaceRate(user: User, game: List<GameResult>): Double {
-        return 1 / expectedRateDenominator(user, game)
-    }
-
-    fun expectedRateDenominator(user: User, game: List<GameResult>): Double {
-        val otherPlayerAverageRating = otherPlayerAverageRating(user, game)
-        val pow = (otherPlayerAverageRating - user.rating) / BASE_RATING
+    fun expectedRateDenominator(player: Player, game: List<PlayerResult>): Double {
+        val otherPlayerAverageRating = otherPlayerAverageRating(player, game)
+        val pow = (otherPlayerAverageRating - player.rating) / BASE_RATING
         return 1 + Math.pow(10.0, pow)
     }
 
@@ -133,11 +135,11 @@ class ScyterRatingCalculator {
     /**
      * Return user place in specific game, need for game's result's rate
      */
-    fun getUserPlace(userResult: GameResult, game: List<GameResult>): Int {
+    fun getPlayerPlace(userResult: PlayerResult, game: List<PlayerResult>): Int {
         var place: Int
         place = game.size
         for (gameResult in game) {
-            if (userResult.user != gameResult.user && userResult.result >= gameResult.result) {
+            if (userResult.player != gameResult.player && userResult.score >= gameResult.score) {
                 place--
             }
         }
@@ -147,23 +149,29 @@ class ScyterRatingCalculator {
     /**
      * Main method, which updates game result
      */
-    fun updateRating(game: List<GameResult>) {
+    fun calculateSeason(season: SeasonGames) {
+        for (game: Game in season.games) {
+            gamePlayed(game.playerResults)
+        }
+    }
+
+    fun gamePlayed(game: List<PlayerResult>) {
         println("Game number: " + gameNumber)
-        PrinterHelper.printGameResults(game)
+       // PrinterHelper.printGameResults(game)
         print("Rating change: ")
         val averageGameRating = getAverage(game)
         for (gameResult in game) {
-            val userResult = (gameResult.result / averageGameRating - expectedPointsRate(gameResult.user, game)) * 0.2
-            val playerRate = getPlayerRate(gameResult.user.games)
+            val userResult = (gameResult.score / averageGameRating - expectedPointsRate(gameResult.player, game)) * 0.2
+            val playerRate = getPlayerRate(gameResult.player.games)
             //val gameResultsRate = getGameResultsRate(game.size, getUserPlace(gameResult, game))
             //  val placeResult = playerRate * ()
             val ratedUserResult = userResult * playerRate * GAME_RATE
-            print(gameResult.user.name + " " + "%.3f".format(ratedUserResult) + "; ")
-            gameResult.user.updatedRating = gameResult.user.rating + ratedUserResult
+            print(gameResult.player.name + " " + "%.3f".format(ratedUserResult) + "; ")
+            gameResult.player.updatedRating = gameResult.player.rating + ratedUserResult
         }
         println()
         for (gameResult in game) {
-            gameResult.user.updateGame()
+            gameResult.player.updateGame()
         }
         gameNumber++
     }
@@ -173,31 +181,5 @@ class ScyterRatingCalculator {
         const val BASE_RATING = 1000.0
         const val GAME_RATE = 30.0
 
-    }
-}
-
-data class User(
-    var name: String,
-    var games: Int = DEFAULT_GAMES,
-    var rating: Double = DEFAULT_RATING,
-    var updatedRating: Double = DEFAULT_RATING
-) {
-    companion object {
-        const val DEFAULT_RATING = 0.0
-        const val DEFAULT_GAMES = 0
-    }
-
-    fun updateGame() {
-        rating = updatedRating;
-        games++
-    }
-}
-
-data class GameResult(
-    val user: User,
-    var result: Double = DEFAULT_RESULT
-) {
-    companion object {
-        const val DEFAULT_RESULT = 0.0
     }
 }

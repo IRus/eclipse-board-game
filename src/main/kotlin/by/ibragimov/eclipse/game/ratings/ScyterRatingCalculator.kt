@@ -1,14 +1,19 @@
 package by.ibragimov.eclipse.game.ratings
 
-import by.ibragimov.eclipse.game.RatingCalculator
-import by.ibragimov.eclipse.game.SeasonGames
-import by.ibragimov.eclipse.game.SeasonRatings
+import by.ibragimov.eclipse.game.*
+import com.ma.scyterrating.ScyterRatingHelper
 
 /**
  * @author Andrew Kolubov
  */
 class ScyterRatingCalculator : RatingCalculator {
     override fun calculate(season: SeasonGames): SeasonRatings {
-        TODO("Implement")
+        val helper = ScyterRatingHelper()
+        helper.calculateSeason(season)
+        val ranks = ArrayList<PlayerRating>()
+        for (player: Player in players) {
+            ranks.add(PlayerRating(player, player.rating))
+        }
+        return SeasonRatings(ranks)
     }
 }

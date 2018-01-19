@@ -7,14 +7,16 @@ import java.time.Month.JUNE
 import java.time.Month.NOVEMBER
 import java.time.Month.SEPTEMBER
 
-private val Ruslan = Player("Ruslan")
-private val Andrey = Player("Andrey")
-private val Hleb = Player("Hleb")
-private val Artur = Player("Artur")
+private val Ruslan = Player("Ruslan", 5, 1000.0)
+private val Andrey = Player("Andrey", 5, 1000.0)
+private val Hleb = Player("Hleb", 5, 1000.0)
+private val Artur = Player("Artur", 5, 1000.0)
+private val Anna = Player("Anna", 5, 1000.0)
 private val Ilya = Player("Ilya")
 private val Bronislav = Player("Bronislav")
-private val Anna = Player("Anna")
 private val Vlad = Player("Vlad")
+
+val players: List<Player> = listOf(Ruslan, Andrey, Hleb, Artur, Anna, Ilya, Bronislav, Vlad)
 
 val games = listOf(
     Game(
