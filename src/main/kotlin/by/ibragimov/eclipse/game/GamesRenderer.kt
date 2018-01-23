@@ -50,7 +50,7 @@ class DefaultGamesRenderer(
             .flatMap { game -> game.playerResults.map { result -> game to result } }
             .groupBy { it.second.player }
             .map { it.toRow(seasonRatings) }
-            .sortedByDescending { it.columns.last().toInt() }
+            .sortedByDescending { it.columns.last().toDouble() }
 
         return markdownTableGenerator.generate(Table(
             rows = rows
