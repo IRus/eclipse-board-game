@@ -27,6 +27,15 @@ val games = listOf(
         )
     ),
     Game(
+        date = LocalDate.of(2018, JANUARY, 30),
+        playerResults = listOf(
+            PlayerResult(Ruslan, 29),
+            PlayerResult(Artur, 42),
+            PlayerResult(Ilya, 26),
+            PlayerResult(Hleb, 46)
+        )
+    ),
+    Game(
         date = LocalDate.of(2017, DECEMBER, 20),
         playerResults = listOf(
             PlayerResult(Ruslan, 42),
