@@ -1,6 +1,7 @@
 package by.ibragimov.eclipse.game
 
 import java.time.LocalDate
+import java.time.Month.APRIL
 import java.time.Month.DECEMBER
 import java.time.Month.JANUARY
 import java.time.Month.JULY
@@ -18,6 +19,15 @@ private val Anna = Player("Anna")
 private val Vlad = Player("Vlad")
 
 val games = listOf(
+    Game(
+        date = LocalDate.of(2018, APRIL, 25),
+        playerResults = listOf(
+            PlayerResult(Ruslan, 36),
+            PlayerResult(Andrey, 37),
+            PlayerResult(Hleb, 31),
+            PlayerResult(Ilya, 29)
+        )
+    ),
     Game(
         date = LocalDate.of(2018, JANUARY, 19),
         playerResults = listOf(
