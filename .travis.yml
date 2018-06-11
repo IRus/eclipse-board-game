@@ -1,7 +1,7 @@
 language: java
 
 jdk:
-- oraclejdk8
+  - oraclejdk10
 
 before_install:
   - export YML_CAL_VERSION=0.0.5
@@ -26,11 +26,11 @@ deploy:
   target_branch: gh-pages
 
 before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -rf $HOME/.gradle/caches/*/plugin-resolution/
-- rm -rf $HOME/.gradle/caches/*/fileHashes/
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -f  $HOME/.gradle/caches/*/fileHashes/fileHashes.lock
+  - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
 
 cache:
   directories:
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
+    - "${HOME}/.gradle/caches/"
+    - "${HOME}/.gradle/wrapper/"
