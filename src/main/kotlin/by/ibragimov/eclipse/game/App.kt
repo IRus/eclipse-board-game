@@ -19,6 +19,7 @@ object App {
             LOGGER.error("Error while processing.", e)
             System.exit(1)
         }
+        LOGGER.info("Generation done")
     }
 }
 
