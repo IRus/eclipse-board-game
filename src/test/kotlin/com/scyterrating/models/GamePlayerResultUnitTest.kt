@@ -3,8 +3,8 @@ package com.scyterrating.models
 import com.scyterrating.helpers.GameResult
 import com.scyterrating.helpers.User
 import ma.com.BaseUnitTest
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class GamePlayerResultUnitTest : BaseUnitTest() {
 

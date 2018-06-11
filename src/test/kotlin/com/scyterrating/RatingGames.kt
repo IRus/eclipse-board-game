@@ -4,10 +4,9 @@ import com.scyterrating.helpers.GameResult
 import com.scyterrating.helpers.ScyterRatingCalculator
 import com.scyterrating.helpers.User
 import ma.com.BaseUnitTest
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
-
-class RatingGames() : BaseUnitTest() {
+class RatingGames : BaseUnitTest() {
 
     @Test
     fun games() {
