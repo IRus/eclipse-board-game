@@ -6,8 +6,8 @@ import java.time.Month.DECEMBER
 import java.time.Month.JANUARY
 import java.time.Month.JULY
 import java.time.Month.JUNE
-import java.time.Month.OCTOBER
 import java.time.Month.NOVEMBER
+import java.time.Month.OCTOBER
 import java.time.Month.SEPTEMBER
 
 private val Ruslan = Player("Ruslan")
@@ -22,11 +22,13 @@ private val Vlad = Player("Vlad")
 val games = listOf(
     Game(
         date = LocalDate.of(2018, OCTOBER, 11),
+        playerResults = listOf(
             PlayerResult(Ruslan, -1),
             PlayerResult(Andrey, 50),
             PlayerResult(Hleb, -1),
             PlayerResult(Ilya, 38),
             PlayerResult(Bronislav, 17)
+        )
     ),
     Game(
         date = LocalDate.of(2018, APRIL, 25),
