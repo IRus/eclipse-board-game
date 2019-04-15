@@ -11,6 +11,12 @@ class PrinterHelper {
             for (gameResult in game) {
                 print(gameResult.player.name + " " + gameResult.score + "; ")
             }
+asdf
+asdffa
+sdf
+asdfdfa
+sdf
+
             println()
         }
 
