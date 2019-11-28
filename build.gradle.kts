@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
 
 plugins {
     application
-    kotlin("jvm").version("1.2.71")
+    kotlin("jvm").version("1.3.61")
 }
 
 repositories {
@@ -23,9 +23,9 @@ val slf4jVersion: String by project
 val junitVersion: String by project
 
 dependencies {
-    compile(kotlin("stdlib-jdk8"))
-    compile("org.slf4j:slf4j-simple:$slf4jVersion")
+    implementation(kotlin("stdlib-jdk8"))
+    implementation("org.slf4j:slf4j-simple:$slf4jVersion")
 
-    testCompile("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }

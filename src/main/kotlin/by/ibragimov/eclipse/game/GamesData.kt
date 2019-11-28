@@ -21,6 +21,15 @@ private val Vlad = Player("Vlad")
 
 val games = listOf(
     Game(
+        date = LocalDate.of(2019, NOVEMBER, 10),
+        playerResults = listOf(
+            PlayerResult(Ruslan, 30),
+            PlayerResult(Artur, 28),
+            PlayerResult(Hleb, 35),
+            PlayerResult(Ilya, 41)
+        )
+    ),
+    Game(
         date = LocalDate.of(2018, OCTOBER, 11),
         playerResults = listOf(
             PlayerResult(Ruslan, -1),
