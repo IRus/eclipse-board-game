@@ -18,8 +18,18 @@ private val Ilya = Player("Ilya")
 private val Bronislav = Player("Bronislav")
 private val Anna = Player("Anna")
 private val Vlad = Player("Vlad")
+private val Dima = Player("Dima")
 
 val games = listOf(
+    Game(
+        date = LocalDate.of(2019, DECEMBER, 28),
+        playerResults = listOf(
+            PlayerResult(Ruslan, 16),
+            PlayerResult(Dima, 39),
+            PlayerResult(Hleb, 51),
+            PlayerResult(Ilya, 23)
+        )
+    ),
     Game(
         date = LocalDate.of(2019, NOVEMBER, 10),
         playerResults = listOf(
