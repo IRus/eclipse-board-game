@@ -1,4 +1,4 @@
-package by.ibragimov.eclipse.game
+package by.ibragimov.eclipse.game.render
 
 data class Table(
     val rows: List<TableRow>

@@ -1,11 +1,10 @@
 package by.ibragimov.eclipse.game.ratings
 
-import by.ibragimov.eclipse.game.Player
-import by.ibragimov.eclipse.game.PlayerRating
-import by.ibragimov.eclipse.game.PlayerResult
-import by.ibragimov.eclipse.game.RatingCalculator
-import by.ibragimov.eclipse.game.SeasonGames
-import by.ibragimov.eclipse.game.SeasonRatings
+import by.ibragimov.eclipse.game.model.Player
+import by.ibragimov.eclipse.game.model.PlayerRating
+import by.ibragimov.eclipse.game.model.PlayerResult
+import by.ibragimov.eclipse.game.model.SeasonGames
+import by.ibragimov.eclipse.game.model.SeasonRatings
 
 /**
  * Simple rating based on relative position of players in each game.

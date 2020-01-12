@@ -1,4 +1,4 @@
-package by.ibragimov.eclipse.game
+package by.ibragimov.eclipse.game.model
 
 import java.time.LocalDate
 

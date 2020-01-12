@@ -1,6 +1,15 @@
 package by.ibragimov.eclipse.game
 
+import by.ibragimov.eclipse.game.model.Game
+import by.ibragimov.eclipse.game.model.Season
+import by.ibragimov.eclipse.game.model.SeasonGames
+import by.ibragimov.eclipse.game.ratings.RatingCalculator
 import by.ibragimov.eclipse.game.ratings.SimpleRatingCalculator
+import by.ibragimov.eclipse.game.render.DefaultFileWriter
+import by.ibragimov.eclipse.game.render.DefaultMarkdownTableGenerator
+import by.ibragimov.eclipse.game.render.FileWriter
+import by.ibragimov.eclipse.game.render.GamesRenderer
+import by.ibragimov.eclipse.game.render.MarkdownGamesRenderer
 import org.slf4j.LoggerFactory
 import kotlin.system.exitProcess
 
@@ -14,7 +23,7 @@ object App {
             Calculator(
                 DefaultFileWriter(),
                 SimpleRatingCalculator(),
-                DefaultGamesRenderer(DefaultMarkdownTableGenerator())
+                MarkdownGamesRenderer(DefaultMarkdownTableGenerator())
             ).run(games)
         } catch (e: Exception) {
             LOGGER.error("Error while processing.", e)

@@ -1,10 +1,13 @@
-package by.ibragimov.eclipse.game
+package by.ibragimov.eclipse.game.render
 
-interface GamesRenderer {
-    fun render(seasons: List<Season>): String
-}
+import by.ibragimov.eclipse.game.model.Game
+import by.ibragimov.eclipse.game.model.Player
+import by.ibragimov.eclipse.game.model.PlayerResult
+import by.ibragimov.eclipse.game.model.Season
+import by.ibragimov.eclipse.game.model.SeasonGames
+import by.ibragimov.eclipse.game.model.SeasonRatings
 
-class DefaultGamesRenderer(
+class MarkdownGamesRenderer(
     private val markdownTableGenerator: MarkdownTableGenerator
 ) : GamesRenderer {
     override fun render(seasons: List<Season>): String {
@@ -71,4 +74,3 @@ class DefaultGamesRenderer(
         }
     }
 }
-

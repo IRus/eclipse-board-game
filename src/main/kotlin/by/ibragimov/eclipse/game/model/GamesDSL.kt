@@ -1,18 +1,10 @@
-package by.ibragimov.eclipse.game
+package by.ibragimov.eclipse.game.model
 
 import java.time.LocalDate
 import java.time.Month
 
 @DslMarker
 annotation class GamesDSL
-
-@GamesDSL
-operator fun Player.rangeTo(score: Int): PlayerResult {
-    return PlayerResult(
-        player = this,
-        score = score.toDouble()
-    )
-}
 
 @GamesDSL
 fun games(builder: GamesBuilder.() -> Unit): List<Game> {
@@ -104,6 +96,13 @@ class GameBuilder {
         builder(holder)
         results.addAll(holder.toResult())
     }
+    @GamesDSL
+    operator fun Player.rangeTo(score: Int) {
+        results.add(PlayerResult(
+            player = this,
+            score = score.toDouble()
+        ))
+    }
 
     internal fun toGame(): Game {
         return Game(
@@ -119,6 +118,14 @@ class AllianceBuilder {
     @GamesDSL
     operator fun PlayerResult.unaryPlus() {
         players.add(this)
+    }
+
+    @GamesDSL
+    operator fun Player.rangeTo(score: Int) {
+        players.add(PlayerResult(
+            player = this,
+            score = score.toDouble()
+        ))
     }
 
     internal fun toResult(): List<PlayerResult> {
