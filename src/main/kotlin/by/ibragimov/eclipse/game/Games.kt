@@ -18,7 +18,7 @@ data class SeasonRatings(
 
 data class Game(
     val date: LocalDate,
-    val playerResults: List<PlayerResult>
+    val results: List<PlayerResult>
 )
 
 /**
@@ -26,7 +26,7 @@ data class Game(
  */
 data class PlayerResult(
     val player: Player,
-    val score: Int
+    val score: Double
 )
 
 data class PlayerRating(

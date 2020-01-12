@@ -1,15 +1,5 @@
 package by.ibragimov.eclipse.game
 
-import java.time.LocalDate
-import java.time.Month.APRIL
-import java.time.Month.DECEMBER
-import java.time.Month.JANUARY
-import java.time.Month.JULY
-import java.time.Month.JUNE
-import java.time.Month.NOVEMBER
-import java.time.Month.OCTOBER
-import java.time.Month.SEPTEMBER
-
 private val Ruslan = Player("Ruslan")
 private val Andrey = Player("Andrey")
 private val Hleb = Player("Hleb")
@@ -19,114 +9,105 @@ private val Bronislav = Player("Bronislav")
 private val Anna = Player("Anna")
 private val Vlad = Player("Vlad")
 private val Dima = Player("Dima")
+private val Artem = Player("Artem")
 
-val games = listOf(
-    Game(
-        date = LocalDate.of(2019, DECEMBER, 28),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 16),
-            PlayerResult(Dima, 39),
-            PlayerResult(Hleb, 51),
-            PlayerResult(Ilya, 23)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2019, NOVEMBER, 10),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 30),
-            PlayerResult(Artur, 28),
-            PlayerResult(Hleb, 35),
-            PlayerResult(Ilya, 41)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2018, OCTOBER, 11),
-        playerResults = listOf(
-            PlayerResult(Ruslan, -1),
-            PlayerResult(Andrey, 50),
-            PlayerResult(Hleb, -1),
-            PlayerResult(Ilya, 38),
-            PlayerResult(Bronislav, 17)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2018, APRIL, 25),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 36),
-            PlayerResult(Andrey, 37),
-            PlayerResult(Hleb, 31),
-            PlayerResult(Ilya, 29)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2018, JANUARY, 19),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 54),
-            PlayerResult(Artur, 53),
-            PlayerResult(Hleb, 40)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2018, JANUARY, 30),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 29),
-            PlayerResult(Artur, 42),
-            PlayerResult(Ilya, 26),
-            PlayerResult(Hleb, 46)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2017, DECEMBER, 20),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 42),
-            PlayerResult(Ilya, 15),
-            PlayerResult(Hleb, 24),
-            PlayerResult(Andrey, 72)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2017, NOVEMBER, 23),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 17),
-            PlayerResult(Artur, 32),
-            PlayerResult(Hleb, 45),
-            PlayerResult(Andrey, 51)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2017, SEPTEMBER, 19),
-        playerResults = listOf(
-            PlayerResult(Ilya, 35),
-            PlayerResult(Bronislav, 55),
-            PlayerResult(Ruslan, -1),
-            PlayerResult(Andrey, 59)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2017, JULY, 4),
-        playerResults = listOf(
-            PlayerResult(Anna, 28),
-            PlayerResult(Andrey, 50),
-            PlayerResult(Ruslan, 46),
-            PlayerResult(Ilya, 29)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2017, JUNE, 23),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 41),
-            PlayerResult(Artur, 54),
-            PlayerResult(Hleb, 68)
-        )
-    ),
-    Game(
-        date = LocalDate.of(2017, JUNE, 15),
-        playerResults = listOf(
-            PlayerResult(Ruslan, 29),
-            PlayerResult(Vlad, 32),
-            PlayerResult(Artur, 19),
-            PlayerResult(Hleb, 40),
-            PlayerResult(Andrey, 39)
-        )
-    )
-)
+val games = games {
+    game {
+        JANUARY(11, 2020)
+        alliance {
+            +(Ilya..30)
+            +(Ruslan..39)
+        }
+        alliance {
+            +(Dima..52)
+            +(Hleb..31)
+        }
+        +(Artem..17)
+        +(Bronislav..4)
+        +(Andrey..45)
+    }
+    game {
+        DECEMBER(28, 2019)
+        +(Ruslan..16)
+        +(Dima..39)
+        +(Hleb..51)
+        +(Ilya..23)
+    }
+    game {
+        NOVEMBER(10, 2019)
+        +(Ruslan..30)
+        +(Artur..28)
+        +(Hleb..35)
+        +(Ilya..41)
+    }
+    game {
+        OCTOBER(11, 2018)
+        +(Ruslan..-1)
+        +(Andrey..50)
+        +(Hleb..-1)
+        +(Ilya..38)
+        +(Bronislav..17)
+    }
+    game {
+        APRIL(25, 2018)
+        +(Ruslan..36)
+        +(Andrey..37)
+        +(Hleb..31)
+        +(Ilya..29)
+    }
+    game {
+        JANUARY(19, 2018)
+        +(Ruslan..54)
+        +(Artur..53)
+        +(Hleb..40)
+    }
+    game {
+        JANUARY(30, 2018)
+        +(Ruslan..29)
+        +(Artur..42)
+        +(Ilya..26)
+        +(Hleb..46)
+    }
+    game {
+        DECEMBER(20, 2017)
+        +(Ruslan..42)
+        +(Ilya..15)
+        +(Hleb..24)
+        +(Andrey..72)
+    }
+    game {
+        NOVEMBER(23, 2017)
+        +(Ruslan..17)
+        +(Artur..32)
+        +(Hleb..45)
+        +(Andrey..51)
+    }
+    game {
+        SEPTEMBER(19, 2017)
+        +(Ilya..35)
+        +(Bronislav..55)
+        +(Ruslan..-1)
+        +(Andrey..59)
+    }
+    game {
+        JULY(4, 2017)
+        +(Anna..28)
+        +(Andrey..50)
+        +(Ruslan..46)
+        +(Ilya..29)
+    }
+    game {
+        JUNE(23, 2017)
+        +(Ruslan..41)
+        +(Artur..54)
+        +(Hleb..68)
+    }
+    game {
+        JUNE(15, 2017)
+        +(Ruslan..29)
+        +(Vlad..32)
+        +(Artur..19)
+        +(Hleb..40)
+        +(Andrey..39)
+    }
+}

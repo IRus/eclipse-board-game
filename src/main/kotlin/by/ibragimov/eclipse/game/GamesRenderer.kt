@@ -9,9 +9,9 @@ class DefaultGamesRenderer(
 ) : GamesRenderer {
     override fun render(seasons: List<Season>): String {
         return template(
-            seasons
-                .map { season(it.year, games(it.games, it.ratings)) }
-                .joinToString(separator = "\n")
+            seasons.joinToString(separator = "\n") {
+                season(it.year, games(it.games, it.ratings))
+            }
         )
     }
 
@@ -41,13 +41,12 @@ class DefaultGamesRenderer(
         val header = Header(listOf("Players") + games.sortedBy { it.date }.map { it.date.format(dayFormatter) } + listOf("Total"))
 
         val seasonPlayers = games
-            .flatMap { it.playerResults }
-            .groupBy { it.player }
-            .map { it.key }
+            .flatMap { it.results.map { result -> result.player } }
+            .distinct()
 
         val rows = listOf(header) + games
-            .map { it.copy(playerResults = it.playerResults.fillPlayers(seasonPlayers)) }
-            .flatMap { game -> game.playerResults.map { result -> game to result } }
+            .map { it.copy(results = it.results.fillPlayers(seasonPlayers)) }
+            .flatMap { game -> game.results.map { result -> game to result } }
             .groupBy { it.second.player }
             .map { it.toRow(seasonRatings) }
             .sortedByDescending { it.columns.last().toInt() }
@@ -60,7 +59,7 @@ class DefaultGamesRenderer(
     private fun Map.Entry<Player, List<Pair<Game, PlayerResult>>>.toRow(seasonRatings: SeasonRatings): Row {
         val pre = listOf(this.key.name)
         val after = seasonRatings.ratings.firstOrNull { it.player == this.key }
-            ?: throw IllegalStateException("Ratings doesn't contain season player '${this.key}'.")
+            ?: throw IllegalStateException("Rating doesn't contain season player '${this.key}'.")
 
         return Row(pre + this.value.sortedBy { it.first.date }.map { "${it.second.score}" } + after.rating.toString())
     }
@@ -68,7 +67,7 @@ class DefaultGamesRenderer(
     private fun List<PlayerResult>.fillPlayers(seasonPlayers: List<Player>): List<PlayerResult> {
         return seasonPlayers.map { player ->
             val result = this.find { it.player == player }
-            if (result != null) result else PlayerResult(player, 0)
+            if (result != null) result else PlayerResult(player, 0.0)
         }
     }
 }

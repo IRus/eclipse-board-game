@@ -2,6 +2,7 @@ package by.ibragimov.eclipse.game
 
 import by.ibragimov.eclipse.game.ratings.SimpleRatingCalculator
 import org.slf4j.LoggerFactory
+import kotlin.system.exitProcess
 
 object App {
     private val LOGGER = LoggerFactory.getLogger(App::class.java)
@@ -17,7 +18,7 @@ object App {
             ).run(games)
         } catch (e: Exception) {
             LOGGER.error("Error while processing.", e)
-            System.exit(1)
+            exitProcess(1)
         }
         LOGGER.info("Generation done")
     }
