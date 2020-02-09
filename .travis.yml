@@ -1,9 +1,12 @@
+version: ~> 1.0
+
 language: java
 
 jdk:
   - openjdk11
 
 before_install:
+  - export GRADLE_OPTS="-Dorg.gradle.daemon=false"
   - export YML_CAL_VERSION=0.0.5
   - wget "https://dl.bintray.com/heapy/heap/by/heap/calendar/yml/yml-ical/${YML_CAL_VERSION}/yml-ical-${YML_CAL_VERSION}-all.jar"
 
