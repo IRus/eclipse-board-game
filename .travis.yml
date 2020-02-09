@@ -1,5 +1,7 @@
 version: ~> 1.0
 
+
+os: linux
 language: java
 
 jdk:
@@ -21,8 +23,8 @@ branches:
 
 deploy:
   provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  cleanup: false
+  token: $GITHUB_TOKEN
   on:
     branch: master
   local_dir: public
