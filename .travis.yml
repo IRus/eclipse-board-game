@@ -23,7 +23,7 @@ branches:
 
 deploy:
   provider: pages
-  cleanup: false
+  skip_cleanup: true
   token: $GITHUB_TOKEN
   on:
     branch: master
