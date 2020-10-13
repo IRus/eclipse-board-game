@@ -16,6 +16,13 @@ private val Artem = Player("Artem")
 
 val games = games {
     game {
+        OCTOBER(10, 2020)
+        Ilya..29
+        Dima..36
+        Ruslan..45
+        Andrey..50
+    }
+    game {
         FEBRUARY(8, 2020)
         Ilya..26
         Dima..24
