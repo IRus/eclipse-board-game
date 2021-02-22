@@ -2,25 +2,25 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
 
 plugins {
     application
-    kotlin("jvm").version("1.3.61")
+    kotlin("jvm").version("1.4.30")
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 application {
-    mainClassName = "by.ibragimov.eclipse.game.App"
+    mainClass.set("by.ibragimov.eclipse.game.App")
 }
 
-tasks.withType<KotlinJvmCompile> {
+tasks.withType<KotlinJvmCompile>().configureEach {
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
-val slf4jVersion: String by project
-val junitVersion: String by project
+val slf4jVersion = "1.7.30"
+val junitVersion = "5.7.1"
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))

@@ -20,14 +20,13 @@ class MarkdownGamesRenderer(
 
     private fun template(body: String): String {
         val gh = "[GitHub](https://github.com/IRus/eclipse-board-game)"
-        val ical = "[Calendar](https://irus.github.io/eclipse-board-game/calendar.ics)"
 
         return """
             *# Results
             *
             *$body
             *
-            * $gh | $ical
+            * $gh
         """.trimMargin("*")
     }
 
@@ -69,8 +68,7 @@ class MarkdownGamesRenderer(
 
     private fun List<PlayerResult>.fillPlayers(seasonPlayers: List<Player>): List<PlayerResult> {
         return seasonPlayers.map { player ->
-            val result = this.find { it.player == player }
-            if (result != null) result else PlayerResult(player, 0.0)
+            find { it.player == player } ?: PlayerResult(player, 0.0)
         }
     }
 }

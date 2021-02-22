@@ -6,13 +6,7 @@ language: java
 jdk:
   - openjdk11
 
-before_install:
-  - export GRADLE_OPTS="-Dorg.gradle.daemon=false"
-  - export YML_CAL_VERSION=0.0.5
-  - wget "https://dl.bintray.com/heapy/heap/by/heap/calendar/yml/yml-ical/${YML_CAL_VERSION}/yml-ical-${YML_CAL_VERSION}-all.jar"
-
 script:
-  - java -jar "yml-ical-${YML_CAL_VERSION}-all.jar" "./events" "./public/calendar.ics"
   - ./gradlew installDist
   - ./build/install/eclipse-board-game/bin/eclipse-board-game
 
@@ -28,13 +22,3 @@ deploy:
     branch: master
   local_dir: public
   target_branch: gh-pages
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -f  $HOME/.gradle/caches/*/fileHashes/fileHashes.lock
-  - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
-
-cache:
-  directories:
-    - "${HOME}/.gradle/caches/"
-    - "${HOME}/.gradle/wrapper/"
